@@ -12,7 +12,7 @@ struct HeaderSignerGenerator: Aws4Signer {
     }
     
     // Move all the variables into a protocol `requestObject`
-    func getAuthHeader(forRequest request: [String : Any], requestDate: Date, service: AwsService, region: AwsRegion, requestMethod: HttpMethod) -> String {
+    func getAuthHeader(forRequest request: [String : Any], requestDate: Date, service: AwsService, region: String, requestMethod: HttpMethod) -> String {
         
         
         let formatter = DateFormatter()
@@ -94,7 +94,7 @@ struct HeaderSignerGenerator: Aws4Signer {
         return canonicalRequest.sha256()
     }
     
-    internal func createSigningString(requestDate: Date, region: AwsRegion, service: AwsService, canonicalRequestHash: String) -> String {
+    internal func createSigningString(requestDate: Date, region: String, service: AwsService, canonicalRequestHash: String) -> String {
         
         let formatter = DateFormatter()
         let dateOnlyFormatter = DateFormatter()
@@ -117,7 +117,7 @@ struct HeaderSignerGenerator: Aws4Signer {
         return signingString
     }
     
-    internal func createSigningKey(awsAccessSecret: String, requestDate: Date, region: AwsRegion, service: AwsService) -> Array<UInt8> {
+    internal func createSigningKey(awsAccessSecret: String, requestDate: Date, region: String, service: AwsService) -> Array<UInt8> {
         
         // TODO sort out unwraps
         
@@ -143,7 +143,7 @@ struct HeaderSignerGenerator: Aws4Signer {
         return signature
     }
     
-    internal func createCredentialsHeader(awsAccessId: String, requestDate: Date, region: AwsRegion, service: AwsService) -> String {
+    internal func createCredentialsHeader(awsAccessId: String, requestDate: Date, region: , service: AwsService) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyyMMdd"
         let credentialsHeader = "\(awsAccessId)/\(formatter.string(from: requestDate))/\(region.rawValue)/\(service.getServiceHostname())/aws4_request"
