@@ -7,7 +7,7 @@ public struct ConnectionManager {
     // MARK: - Properties
     internal let accessId: String
     internal let accessSecret: String
-    internal let region: AwsRegion
+    internal let region: String
     
     // MARK: - Initialiser
     
@@ -19,7 +19,7 @@ public struct ConnectionManager {
      - accessSecret: The Access Secret for the ID to connect to the AWS service
      - region: The region the service is running in
      */
-    public init(accessId: String, accessSecret: String, region: AwsRegion) {
+    public init(accessId: String, accessSecret: String, region: String) {
         self.accessId = accessId
         self.accessSecret = accessSecret
         self.region = region

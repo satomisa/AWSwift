@@ -5,11 +5,11 @@ struct AwsRequest {
     fileprivate let awsAccessKeyId: String
     fileprivate let awsAccessKeySecret: String
     fileprivate let service: AwsService
-    fileprivate let region: AwsRegion
+    fileprivate let region: String
     fileprivate let request: [String: Any]
     fileprivate let requestMethod: HttpMethod
     
-    init(awsAccessKeyId: String, awsAccessKeySecret: String, service: AwsService, region: AwsRegion, request: [String: Any], requestMethod: HttpMethod) {
+    init(awsAccessKeyId: String, awsAccessKeySecret: String, service: AwsService, region: String, request: [String: Any], requestMethod: HttpMethod) {
         self.awsAccessKeyId = awsAccessKeyId
         self.awsAccessKeySecret = awsAccessKeySecret
         self.service = service
